@@ -1,0 +1,148 @@
+
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname AMS-SW-004
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$LCbz$nY1nLCFhOR3d5Q0681wZz/
+!
+username root secret 5 $1$Kkbe$xHmbz7VgdRc2WzEl.Ai2v0
+no aaa new-model
+system mtu routing 1500
+ip subnet-zero
+!
+!
+ip domain-name bestsaler.nl
+!
+!
+crypto pki trustpoint TP-self-signed-2437797504
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2437797504
+ revocation-check none
+ rsakeypair TP-self-signed-2437797504
+!
+!
+crypto pki certificate chain TP-self-signed-2437797504
+ certificate self-signed 01
+  3082024F 308201B8 A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 32343337 37393735 3034301E 170D3933 30333031 30303031 
+  32345A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 34333737 
+  39373530 3430819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  8100BC0E 01C9AF88 D7C858A4 1CC60B4F E9D60421 E863005B 385D2EE2 5F8699CD 
+  6C3D232D A8F31919 3B7673E4 C36EE851 984F0F7C A0A7E032 7AB64C33 0D58826A 
+  6E6F01B5 483A1E3C ABD524F5 4394401E 7895E19E 9E32567A F6F5C34C 1C9AF426 
+  B8352CB0 FF5B3A0C 1FA3EC8B EE99AC74 7D0C864C E6213406 D5D0BFFF D7F0DB8C 
+  084B0203 010001A3 77307530 0F060355 1D130101 FF040530 030101FF 30220603 
+  551D1104 1B301982 17414D53 2D53572D 3030342E 62657374 73616C65 722E6E6C 
+  301F0603 551D2304 18301680 14F893CD 33AD6D32 0745A4F2 1E14B90D 3A47DAA8 
+  B7301D06 03551D0E 04160414 F893CD33 AD6D3207 45A4F21E 14B90D3A 47DAA8B7 
+  300D0609 2A864886 F70D0101 04050003 8181009B 6AB6F942 759D13AB 99AD1E59 
+  F26936BA 0B354337 1EA24E7D 42F0847F 710308D3 B669E8C2 2D6310C7 74A3F6D4 
+  530BC1A9 5EC54927 B302F84C 7237E770 C6CFB6A0 A4493A49 23713727 C42EA0C6 
+  A322242E A29B595C 320AA672 427430B0 7270689C DC3801C9 29A6F9C7 B94833E5 
+  A16F652F 0E7A69C5 A5CFABC9 7F802B56 7E5E77
+  quit
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+ip ssh version 2
+!
+!
+interface FastEthernet0/1
+ switchport mode trunk
+!
+interface FastEthernet0/2
+ switchport mode trunk
+!
+interface FastEthernet0/3
+ switchport mode trunk
+!
+interface FastEthernet0/4
+ switchport mode trunk
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+!
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+!
+interface FastEthernet0/9
+!
+interface FastEthernet0/10
+!
+interface FastEthernet0/11
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+!
+interface FastEthernet0/14
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+ switchport access vlan 10
+ switchport mode access
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ no ip address
+ no ip route-cache
+!
+interface Vlan19
+ ip address 10.10.19.24 255.255.255.0
+ no ip route-cache
+!
+ip default-gateway 10.10.19.254
+ip http server
+ip http secure-server
+!
+control-plane
+!
+!
+line con 0
+ logging synchronous
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login
+!
+end

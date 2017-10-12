@@ -1,0 +1,249 @@
+
+!
+! Last configuration change at 14:30:48 UTC Fri Oct 6 2017
+!
+version 15.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+service compress-config
+!
+hostname Master-Switch
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition Mgmt-vrf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+!
+no aaa new-model
+switch 1 provision ws-c3650-24ts
+!
+!
+!
+!
+!
+!
+!
+!
+qos queue-softmax-multiplier 100
+!
+crypto pki trustpoint TP-self-signed-115758022
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-115758022
+ revocation-check none
+ rsakeypair TP-self-signed-115758022
+!
+!
+crypto pki certificate chain TP-self-signed-115758022
+ certificate self-signed 01
+  30820229 30820192 A0030201 02020101 300D0609 2A864886 F70D0101 05050030
+  30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 31313537 35383032 32301E17 0D313731 30303631 31323330
+  335A170D 32303031 30313030 30303030 5A303031 2E302C06 03550403 1325494F
+  532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3131 35373538
+  30323230 819F300D 06092A86 4886F70D 01010105 0003818D 00308189 02818100
+  B0C03A85 4B27015B EF3EE7F6 8BCB1601 A7546CED CB0105B7 B23399FA 766B909F
+  D413E64B F4DFFC47 BECB2A09 571D8FF1 DC58CB56 A406DD7B 492A8E2B 7CE8A6B3
+  F9727C03 0767DF1E AAD321E1 AE030870 2A3E0C20 A0B33668 0D4C908C 5B203C36
+  84080A55 DEAF33A3 62157212 BAE8D72C F61D345C 10815477 DF51DD79 EA3B23E5
+  02030100 01A35330 51300F06 03551D13 0101FF04 05300301 01FF301F 0603551D
+  23041830 16801443 E0BC1C91 597F274F AAB3485B 84DCB39F 0F1ADE30 1D060355
+  1D0E0416 041443E0 BC1C9159 7F274FAA B3485B84 DCB39F0F 1ADE300D 06092A86
+  4886F70D 01010505 00038181 0044CA91 286217EC 11D3503D CD5520CD D84F42B4
+  60CFACD5 0B7BDF42 FAA1476D 787E7C4D CB6CA016 7AD2D4FC A2D1F2D1 6AFDA931
+  C44D7C4E B0631AAA 1C7D93AD 341F0ECC 8D396FB9 ED1CA591 23869673 410851D9
+  EAAD6D52 AF5886CB 3941D96A 6C9BBFAE 1FA058B8 D5ACD5A3 8A6AD350 A1203FFF
+  B01CD948 41049F9D 03643714 AB
+        quit
+diagnostic bootup level minimal
+spanning-tree mode pvst
+spanning-tree extend system-id
+hw-switch switch 1 logging onboard message level 3
+!
+redundancy
+ mode sso
+!
+!
+!
+class-map match-any non-client-nrt-class
+!
+policy-map port_child_policy
+ class non-client-nrt-class
+  bandwidth remaining ratio 10
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ vrf forwarding Mgmt-vrf
+ no ip address
+ negotiation auto
+!
+interface GigabitEthernet1/0/1
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/2
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/3
+ switchport access vlan 1
+ switchport mode access
+!
+interface GigabitEthernet1/0/4
+ switchport access vlan 1
+ switchport mode access
+!
+interface GigabitEthernet1/0/5
+ shutdown
+!
+interface GigabitEthernet1/0/6
+ shutdown
+!
+interface GigabitEthernet1/0/7
+ shutdown
+!
+interface GigabitEthernet1/0/8
+ shutdown
+!
+interface GigabitEthernet1/0/9
+ description ConnectionUTM01
+ switchport access vlan 501
+ switchport mode access
+!
+interface GigabitEthernet1/0/10
+ description ConnectionUTM02
+ switchport access vlan 502
+ switchport mode access
+!
+interface GigabitEthernet1/0/11
+ description ConnectionUTM01
+ switchport access vlan 511
+ switchport mode access
+!
+interface GigabitEthernet1/0/12
+ description ConnectionUTM02
+ switchport access vlan 512
+ switchport mode access
+!
+interface GigabitEthernet1/0/13
+ shutdown
+!
+interface GigabitEthernet1/0/14
+ shutdown
+!
+interface GigabitEthernet1/0/15
+ switchport access vlan 503
+ switchport mode access
+!
+interface GigabitEthernet1/0/16
+ switchport access vlan 513
+ switchport mode access
+!
+interface GigabitEthernet1/0/17
+ switchport access vlan 601
+ switchport mode access
+!
+interface GigabitEthernet1/0/18
+ switchport access vlan 514
+ switchport mode access
+!
+interface GigabitEthernet1/0/19
+ switchport access vlan 504
+ switchport mode access
+!
+interface GigabitEthernet1/0/20
+ switchport access vlan 602
+ switchport mode access
+!
+interface GigabitEthernet1/0/21
+ switchport access vlan 610
+ switchport mode access
+!
+interface GigabitEthernet1/0/22
+ switchport access vlan 611
+ switchport mode access
+!
+interface GigabitEthernet1/0/23
+ switchport access vlan 612
+ switchport mode access
+!
+interface GigabitEthernet1/0/24
+ switchport access vlan 613
+ switchport mode access
+!
+interface GigabitEthernet1/1/1
+!
+interface GigabitEthernet1/1/2
+!
+interface GigabitEthernet1/1/3
+!
+interface GigabitEthernet1/1/4
+!
+interface Vlan1
+ no ip address
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ logging synchronous
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
+wsma agent exec
+ profile httplistener
+ profile httpslistener
+!
+wsma agent config
+ profile httplistener
+ profile httpslistener
+!
+wsma agent filesys
+ profile httplistener
+ profile httpslistener
+!
+wsma agent notify
+ profile httplistener
+ profile httpslistener
+!
+!
+wsma profile listener httplistener
+ transport http
+!
+wsma profile listener httpslistener
+ transport https
+!
+ap group default-group
+end

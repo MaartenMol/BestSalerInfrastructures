@@ -1,0 +1,7 @@
+vtp domain vtp.bestsaler.nl
+vtp version 2
+vtp mode client
+vtp password P@ssword
+crypto key generate rsa
+1024
+do write
