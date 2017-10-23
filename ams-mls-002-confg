@@ -131,52 +131,79 @@ interface Vlan1
 !
 interface Vlan10
  ip address 10.10.10.252 255.255.255.0
+ ip helper-address 10.10.10.10
  standby 10 ip 10.10.10.254
+ standby 10 priority 150
  standby 10 preempt
 !
 interface Vlan19
  ip address 10.10.19.12 255.255.255.0
+ ip helper-address 10.10.10.10
  standby 19 ip 10.10.19.254
+ standby 19 priority 150
  standby 19 preempt
 !
 interface Vlan110
  ip address 172.10.10.252 255.255.255.0
+ ip helper-address 10.10.10.10
  standby 110 ip 172.10.10.254
+ standby 110 priority 150
  standby 110 preempt
 !
 interface Vlan120
  ip address 172.10.20.252 255.255.255.0
+ ip helper-address 10.10.10.10
  standby 120 ip 172.10.20.254
+ standby 120 priority 150
  standby 120 preempt
 !
 interface Vlan130
  ip address 172.10.30.252 255.255.255.0
+ ip helper-address 10.10.10.10
  standby 130 ip 172.10.30.254
+ standby 130 priority 150
  standby 130 preempt
 !
 interface Vlan140
  ip address 172.10.40.252 255.255.255.0
+ ip helper-address 10.10.10.10
  standby 140 ip 172.10.40.254
+ standby 140 priority 150
  standby 140 preempt
 !
 interface Vlan150
  ip address 172.10.50.252 255.255.255.0
+ ip helper-address 10.10.10.10
  standby 150 ip 172.10.50.254
+ standby 150 priority 150
  standby 150 preempt
 !
 interface Vlan160
  ip address 172.10.60.252 255.255.255.0
+ ip helper-address 10.10.10.10
  standby 160 ip 172.10.60.254
+ standby 160 priority 150
  standby 160 preempt
 !
 interface Vlan170
+ ip address 172.10.70.252 255.255.255.0
+ ip helper-address 10.10.10.10
+ standby 170 ip 172.10.70.254
+ standby 170 priority 150
+ standby 170 preempt
+!
+interface Vlan180
  ip address 172.10.80.252 255.255.255.0
+ ip helper-address 10.10.10.10
  standby 180 ip 172.10.80.254
+ standby 180 priority 150
  standby 180 preempt
 !
 interface Vlan190
  ip address 172.10.90.252 255.255.255.0
+ ip helper-address 10.10.10.10
  standby 190 ip 172.10.90.254
+ standby 190 priority 150
  standby 190 preempt
 !
 ip classless
