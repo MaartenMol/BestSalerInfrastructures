@@ -1,9 +1,10 @@
 
 !
 version 12.2
+service config
 no service pad
 service timestamps debug datetime msec
-service timestamps log datetime msec
+service timestamps log datetime
 no service password-encryption
 !
 hostname AMS-MLS-002
@@ -20,6 +21,7 @@ no aaa new-model
 system mtu routing 1500
 ip routing
 ip domain-name bestsaler.nl
+ip name-server 10.10.10.10
 !
 !
 !
@@ -138,6 +140,7 @@ interface Vlan10
 !
 interface Vlan19
  ip address 10.10.19.12 255.255.255.0
+ ip access-group 101 out
  ip helper-address 10.10.10.10
  standby 19 ip 10.10.19.254
  standby 19 priority 150
@@ -214,6 +217,9 @@ ip http secure-server
 !
 !
 ip sla enable reaction-alerts
+logging 10.10.10.129
+access-list 101 permit ip 172.10.80.0 0.0.0.255 10.10.19.0 0.0.0.255 log
+access-list 101 permit ip 10.10.10.0 0.0.0.255 10.10.19.0 0.0.0.255 log
 !
 !
 !
