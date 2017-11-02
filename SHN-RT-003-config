@@ -1,19 +1,20 @@
-Current configuration : 2367 bytes
+Building configuration...
+
+Current configuration : 1603 bytes
 !
-! Last configuration change at 15:30:21 UTC Thu Nov 20 2014
+! Last configuration change at 14:09:16 UTC Thu Nov 2 2017
 !
 version 15.4
 service timestamps debug datetime msec
 service timestamps log datetime msec
 no service password-encryption
 !
-hostname SHN-RT-001
+hostname SHN-RT-003
 !
 boot-start-marker
 boot-end-marker
 !
 !
-enable secret 5 $1$yikD$KwAaJiTJRgwWBphLPWCJm.
 !
 no aaa new-model
 memory-size iomem 5
@@ -37,7 +38,6 @@ memory-size iomem 5
 !
 !
 !
-ip domain name computerhouse.cn
 ip cef
 ipv6 unicast-routing
 ipv6 cef
@@ -49,12 +49,11 @@ multilink bundle-name authenticated
 cts logging verbose
 !
 !
-license udi pid CISCO2911/K9 sn FCZ154470L1
+license udi pid CISCO2911/K9 sn FCZ154420PE
 license boot module c2900 technology-package securityk9
 license boot module c2900 technology-package datak9
 !
 !
-username root secret 5 $1$CBZV$Xr1u97LhmstHBn6RdQEN..
 !
 redundancy
 !
@@ -62,7 +61,6 @@ redundancy
 !
 !
 !
-ip ssh version 2
 !
 !
 !
@@ -72,13 +70,6 @@ ip ssh version 2
 !
 !
 !
-!
-interface Tunnel0
- no ip address
- ipv6 address 2001:DB8:ACAD:12:99::2/80
- tunnel source 188.136.52.2
- tunnel mode ipv6ip
- tunnel destination 188.209.48.86
 !
 interface Embedded-Service-Engine0/0
  no ip address
@@ -88,47 +79,30 @@ interface GigabitEthernet0/0
  no ip address
  duplex auto
  speed auto
- ipv6 address 2001:DB8:ACAD:12:1::1/80
+ ipv6 address 2001:DB8:ACAD:12:4::1/80
  ipv6 ospf 1 area 0
 !
 interface GigabitEthernet0/1
  no ip address
  duplex auto
  speed auto
- ipv6 address 2001:DB8:ACAD:12:3::1/80
+ ipv6 address 2001:DB8:ACAD:12:3::2/80
  ipv6 ospf 1 area 0
 !
 interface GigabitEthernet0/2
  no ip address
  duplex auto
  speed auto
- ipv6 address 2001:DB8:ACAD:12:12::2/80
+ ipv6 address 2001:DB8:ACAD:12:2::2/80
  ipv6 ospf 1 area 0
 !
 interface Serial0/0/0
  no ip address
  shutdown
- clock rate 2000000
 !
 interface Serial0/0/1
  no ip address
  shutdown
- clock rate 2000000
-!
-interface FastEthernet0/1/0
- no ip address
-!
-interface FastEthernet0/1/1
- no ip address
-!
-interface FastEthernet0/1/2
- no ip address
-!
-interface FastEthernet0/1/3
- no ip address
-!
-interface Vlan1
- no ip address
 !
 !
 ip forward-protocol nd
@@ -136,21 +110,13 @@ ip forward-protocol nd
 no ip http server
 no ip http secure-server
 !
-ip route 0.0.0.0 0.0.0.0 188.136.52.1
 !
-ipv6 route ::/0 GigabitEthernet0/2
+ipv6 route ::/0 GigabitEthernet0/1
 ipv6 router ospf 1
- router-id 1.1.1.1
- area 0 range 2001:DB8:ACAD:12::/64
- default-information originate
- redistribute static
+ router-id 3.3.3.3
 !
 !
 !
-access-list 1 permit any
-!
-ipv6 access-list NAT64
- permit ipv6 any any
 !
 control-plane
 !
@@ -165,8 +131,8 @@ line 2
  transport output lat pad telnet rlogin lapb-ta mop udptn v120 ssh
  stopbits 1
 line vty 0 4
- login local
- transport input ssh
+ login
+ transport input none
 !
 scheduler allocate 20000 1000
 !

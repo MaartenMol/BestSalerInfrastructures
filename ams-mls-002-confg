@@ -1,7 +1,6 @@
 
 !
 version 12.2
-service config
 no service pad
 service timestamps debug datetime msec
 service timestamps log datetime
@@ -19,6 +18,9 @@ username root secret 5 $1$.3.g$O4Vx41ZDRJF/OMMwZ9p5Y/
 !
 no aaa new-model
 system mtu routing 1500
+!
+track 10 ip sla 10 reachability
+ delay down 10 up 1
 ip routing
 ip domain-name bestsaler.nl
 ip name-server 10.10.10.10
@@ -34,7 +36,27 @@ crypto pki trustpoint TP-self-signed-208875776
 !
 !
 crypto pki certificate chain TP-self-signed-208875776
- certificate self-signed 01 nvram:IOS-Self-Sig#3636.cer
+ certificate self-signed 01
+  3082024E 308201B7 A0030201 02020101 300D0609 2A864886 F70D0101 04050030 
+  30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 32303838 37353737 36301E17 0D393330 33303130 31343630 
+  345A170D 32303031 30313030 30303030 5A303031 2E302C06 03550403 1325494F 
+  532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3230 38383735 
+  37373630 819F300D 06092A86 4886F70D 01010105 0003818D 00308189 02818100 
+  C991C241 1C878900 6374AA85 018DEDBB 570E9DE6 E1F3CBF4 FE6A3BCB EC30871B 
+  3D747E53 01794171 7A88E888 CFC3863C 008E80E1 B9E456B6 B6DCE203 EA5B8465 
+  D819846A E60E9C4F ADD19473 5334AD22 F3CEF1E3 6E5B3D49 FF3CEE50 69A124AF 
+  B4CCFF9B A202B556 86395564 8D391B57 A3C357BE 49EFDE38 ED688395 DF8A7DF9 
+  02030100 01A37830 76300F06 03551D13 0101FF04 05300301 01FF3023 0603551D 
+  11041C30 1A821841 4D532D4D 4C532D30 30322E62 65737473 616C6572 2E6E6C30 
+  1F060355 1D230418 30168014 F8953FCE 5DE784FB 2E6E2ECC 6F15EA38 9A94D401 
+  301D0603 551D0E04 160414F8 953FCE5D E784FB2E 6E2ECC6F 15EA389A 94D40130 
+  0D06092A 864886F7 0D010104 05000381 81008DAA 5C11EB68 38BE7BFB 9FB65BF8 
+  F3815A10 E0081E28 0EC41AF6 5CE94999 7A415CD7 6AB95D0C 74328304 FEE262EF 
+  B8DE77A2 B2DFF098 0A8CA80D ED8A52B8 A33C277C EA06CB52 FE002686 6ADF441D 
+  C734CAC4 481A82E7 E10204AD 1A964167 9AC1D48D 0AEF1C0E 25828086 76BCCD95 
+  F70175AA 3136D2F8 BFF7470C 36C0D6B5 5B99
+  quit
 !
 !
 !
@@ -83,12 +105,16 @@ interface FastEthernet0/7
  ip address 1.1.1.2 255.255.255.252
 !
 interface FastEthernet0/8
+ shutdown
 !
 interface FastEthernet0/9
+ shutdown
 !
 interface FastEthernet0/10
+ shutdown
 !
 interface FastEthernet0/11
+ shutdown
 !
 interface FastEthernet0/12
  description ConnectionUTM02
@@ -96,26 +122,37 @@ interface FastEthernet0/12
  ip address 192.168.2.250 255.255.255.0
 !
 interface FastEthernet0/13
+ shutdown
 !
 interface FastEthernet0/14
+ shutdown
 !
 interface FastEthernet0/15
+ shutdown
 !
 interface FastEthernet0/16
+ shutdown
 !
 interface FastEthernet0/17
+ shutdown
 !
 interface FastEthernet0/18
+ shutdown
 !
 interface FastEthernet0/19
+ shutdown
 !
 interface FastEthernet0/20
+ shutdown
 !
 interface FastEthernet0/21
+ shutdown
 !
 interface FastEthernet0/22
+ shutdown
 !
 interface FastEthernet0/23
+ shutdown
 !
 interface FastEthernet0/24
  no switchport
@@ -124,8 +161,10 @@ interface FastEthernet0/24
  standby 1 preempt
 !
 interface GigabitEthernet0/1
+ shutdown
 !
 interface GigabitEthernet0/2
+ shutdown
 !
 interface Vlan1
  no ip address
@@ -137,6 +176,7 @@ interface Vlan10
  standby 10 ip 10.10.10.254
  standby 10 priority 150
  standby 10 preempt
+ standby 10 track 10 decrement 100
 !
 interface Vlan19
  ip address 10.10.19.12 255.255.255.0
@@ -145,6 +185,7 @@ interface Vlan19
  standby 19 ip 10.10.19.254
  standby 19 priority 150
  standby 19 preempt
+ standby 19 track 10 decrement 100
 !
 interface Vlan110
  ip address 172.10.10.252 255.255.255.0
@@ -152,6 +193,7 @@ interface Vlan110
  standby 110 ip 172.10.10.254
  standby 110 priority 150
  standby 110 preempt
+ standby 110 track 10 decrement 100
 !
 interface Vlan120
  ip address 172.10.20.252 255.255.255.0
@@ -159,6 +201,7 @@ interface Vlan120
  standby 120 ip 172.10.20.254
  standby 120 priority 150
  standby 120 preempt
+ standby 120 track 10 decrement 100
 !
 interface Vlan130
  ip address 172.10.30.252 255.255.255.0
@@ -166,6 +209,7 @@ interface Vlan130
  standby 130 ip 172.10.30.254
  standby 130 priority 150
  standby 130 preempt
+ standby 130 track 10 decrement 100
 !
 interface Vlan140
  ip address 172.10.40.252 255.255.255.0
@@ -173,6 +217,7 @@ interface Vlan140
  standby 140 ip 172.10.40.254
  standby 140 priority 150
  standby 140 preempt
+ standby 140 track 10 decrement 100
 !
 interface Vlan150
  ip address 172.10.50.252 255.255.255.0
@@ -180,6 +225,7 @@ interface Vlan150
  standby 150 ip 172.10.50.254
  standby 150 priority 150
  standby 150 preempt
+ standby 150 track 10 decrement 100
 !
 interface Vlan160
  ip address 172.10.60.252 255.255.255.0
@@ -187,6 +233,7 @@ interface Vlan160
  standby 160 ip 172.10.60.254
  standby 160 priority 150
  standby 160 preempt
+ standby 160 track 10 decrement 100
 !
 interface Vlan170
  ip address 172.10.70.252 255.255.255.0
@@ -194,6 +241,7 @@ interface Vlan170
  standby 170 ip 172.10.70.254
  standby 170 priority 150
  standby 170 preempt
+ standby 170 track 10 decrement 100
 !
 interface Vlan180
  ip address 172.10.80.252 255.255.255.0
@@ -201,6 +249,7 @@ interface Vlan180
  standby 180 ip 172.10.80.254
  standby 180 priority 150
  standby 180 preempt
+ standby 180 track 10 decrement 100
 !
 interface Vlan190
  ip address 172.10.90.252 255.255.255.0
@@ -208,6 +257,7 @@ interface Vlan190
  standby 190 ip 172.10.90.254
  standby 190 priority 150
  standby 190 preempt
+ standby 190 track 10 decrement 100
 !
 ip classless
 ip route 0.0.0.0 0.0.0.0 192.168.2.254
@@ -216,16 +266,26 @@ ip http server
 ip http secure-server
 !
 !
+ip sla logging traps
+ip sla 10
+ icmp-echo 82.82.82.82 source-ip 192.168.2.250
+ tag InternetCheckRight
+ frequency 5
+ip sla schedule 10 life forever start-time now
 ip sla enable reaction-alerts
 logging 10.10.10.129
 access-list 101 permit ip 172.10.80.0 0.0.0.255 10.10.19.0 0.0.0.255 log
 access-list 101 permit ip 10.10.10.0 0.0.0.255 10.10.19.0 0.0.0.255 log
 !
 !
+banner login  Login with the network engineer credentials! 
+banner motd  Welcome to the infrastructure of BestSaler! 
 !
 line con 0
  logging synchronous
 line vty 0 4
+ exec-timeout 5 0
+ timeout login response 10
  login local
  transport input ssh
 line vty 5 15
