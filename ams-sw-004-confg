@@ -81,59 +81,117 @@ interface FastEthernet0/4
 !
 interface FastEthernet0/5
  shutdown
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky
 !
 interface FastEthernet0/6
  shutdown
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky
 !
 interface FastEthernet0/7
  shutdown
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky
 !
 interface FastEthernet0/8
  shutdown
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky
 !
 interface FastEthernet0/9
  shutdown
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky
 !
 interface FastEthernet0/10
  shutdown
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky
 !
 interface FastEthernet0/11
  shutdown
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky
 !
 interface FastEthernet0/12
  shutdown
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky
 !
 interface FastEthernet0/13
  shutdown
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky
 !
 interface FastEthernet0/14
  shutdown
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky
 !
 interface FastEthernet0/15
  shutdown
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky
 !
 interface FastEthernet0/16
  shutdown
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky
 !
 interface FastEthernet0/17
  shutdown
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky
 !
 interface FastEthernet0/18
  shutdown
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky
 !
 interface FastEthernet0/19
  shutdown
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky
 !
 interface FastEthernet0/20
  shutdown
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky
 !
 interface FastEthernet0/21
+ shutdown
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky
 !
 interface FastEthernet0/22
  shutdown
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky
 !
 interface FastEthernet0/23
  shutdown
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky
 !
 interface FastEthernet0/24
  switchport access vlan 10
@@ -141,9 +199,15 @@ interface FastEthernet0/24
 !
 interface GigabitEthernet0/1
  shutdown
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky
 !
 interface GigabitEthernet0/2
  shutdown
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky
 !
 interface Vlan1
  no ip address
