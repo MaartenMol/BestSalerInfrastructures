@@ -89,6 +89,7 @@ interface GigabitEthernet0/0
  ip virtual-reassembly in
  duplex auto
  speed auto
+ no shutdown
 !
 interface GigabitEthernet0/1
  ip address 24.132.130.1 255.255.255.252
@@ -96,6 +97,7 @@ interface GigabitEthernet0/1
  ip virtual-reassembly in
  duplex auto
  speed auto
+ no shutdown
 !
 interface GigabitEthernet0/2
  ip address 90.90.90.91 255.255.255.0
@@ -103,6 +105,7 @@ interface GigabitEthernet0/2
  ip virtual-reassembly in
  duplex auto
  speed auto
+ no shutdown
 !
 interface Serial0/0/0
  no ip address
