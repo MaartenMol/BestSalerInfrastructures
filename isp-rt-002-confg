@@ -84,16 +84,19 @@ interface GigabitEthernet0/0
  ip address 222.126.128.254 255.255.255.0
  duplex auto
  speed auto
+ no shutdown
 !
 interface GigabitEthernet0/1
  ip address 24.132.129.1 255.255.255.252
  duplex auto
  speed auto
+ no shutdown
 !
 interface GigabitEthernet0/2
  ip address 188.136.52.1 255.255.255.0
  duplex auto
  speed auto
+ no shutdown
 !
 interface Serial0/0/0
  no ip address
