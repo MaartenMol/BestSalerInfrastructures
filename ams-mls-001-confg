@@ -1,4 +1,7 @@
-
+!
+ipv6 unicast-routing
+!
+ip routing
 !
 version 12.2
 no service pad
@@ -116,6 +119,8 @@ interface FastEthernet0/10
 interface FastEthernet0/11
  description ConnectionUTM01
  no switchport
+ ipv6 enable
+ ipv6 address A::10/80
  ip address 192.168.1.250 255.255.255.0
 !
 interface FastEthernet0/12
@@ -171,6 +176,8 @@ interface Vlan1
  shutdown
 !
 interface Vlan10
+ ipv6 enable
+ ipv6 address C::1/80
  ip address 10.10.10.251 255.255.255.0
  ip helper-address 10.10.10.10
  standby 10 ip 10.10.10.254
